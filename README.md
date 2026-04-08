@@ -1,6 +1,6 @@
 ---
 
-# Gradly
+## Gradly
 
 **Plataforma colaborativa para gestão de TCC**
 
