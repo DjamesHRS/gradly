@@ -1,3 +1,4 @@
+DROP DATABASE gradly;
 CREATE DATABASE gradly;
 USE gradly;
 
