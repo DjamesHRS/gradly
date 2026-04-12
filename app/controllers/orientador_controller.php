@@ -19,12 +19,12 @@ class OrientadorControle {
 
             $userId = $user->inserir();
 
-            $coordenador = new Orientador();
-            $coordenador->id = $userId;
-            $coordenador->departamento = $_POST['departamento'];
-            $coordenador->instituicao = $_POST['instituicao'];
+            $orientador = new Orientador();
+            $orientador->id = $userId;
+            $orientador->atuacao = $_POST['atuacao'];
+            $orientador->titulacao = $_POST['titulacao'];
 
-            $coordenador->inserir();
+            $orientador->inserir();
 
             $conn->commit();
             echo json_encode([

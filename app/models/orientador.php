@@ -2,11 +2,11 @@
 
 include_once("../config/conexao.php");
 
-class orientador {
+class Orientador {
 
     public $id;
-    public $departamento;
-    public $instituicao;
+    public $atuacao;
+    public $titulacao;
 
     public function inserir() {
 
@@ -14,14 +14,14 @@ class orientador {
 
             $parametros = Array(
                 ':id' => $this->id,
-                ':departamento' => $this->departamento,
-                ':instituicao' => $this->instituicao,
+                ':atuacao' => $this->atuacao,
+                ':titulacao' => $this->titulacao,
             );
 
             $query = "INSERT INTO orientador
-                    (id, departamento, instituicao_id)
+                    (id, areaAtuacao, titulacao)
                     VALUES
-                    (:id, :departamento, :instituicao)";
+                    (:id, :atuacao, :titulacao)";
 
             Conexao::executarComParametros($query, $parametros);
 
