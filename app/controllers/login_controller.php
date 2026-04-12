@@ -1,5 +1,8 @@
 <?php
 include_once("../models/user.php");
+
+session_start();
+
 header('Content-Type: application/json; charset=utf-8');
 
 class LoginControle {
@@ -11,7 +14,7 @@ class LoginControle {
             $email = $_POST['email'];
             $senha = $_POST['senha'];
 
-            // Buscar usuário na tabela user
+            // Buscar usuário
             $query = "SELECT id, nome, senha FROM user WHERE email = :email";
             $stmt = Conexao::executarComParametros($query, [':email' => $email]);
             
@@ -29,44 +32,50 @@ class LoginControle {
             $userId = $usuario['id'];
             $tipo_usuario = null;
 
-            // Verificar em cada tabela filha
-            // Verificar se é Orientador
-            $queryOrientador = "SELECT id FROM orientador WHERE id = :id";
-            $stmtOrientador = Conexao::executarComParametros($queryOrientador, [':id' => $userId]);
-            if ($stmtOrientador->fetch()) {
-                $tipo_usuario = 'orientador';
+            // Orientador
+            $stmt = Conexao::executarComParametros(
+                "SELECT id FROM orientador WHERE id = :id",
+                [':id' => $userId]
+            );
+            if ($stmt->fetch()) $tipo_usuario = 'orientador';
+
+            // Administrador
+            if (!$tipo_usuario) {
+                $stmt = Conexao::executarComParametros(
+                    "SELECT id FROM administrador WHERE id = :id",
+                    [':id' => $userId]
+                );
+                if ($stmt->fetch()) $tipo_usuario = 'administrador';
             }
 
-            // Verificar se é Administrador
+            // Coordenador
             if (!$tipo_usuario) {
-                $queryAdmin = "SELECT id FROM administrador WHERE id = :id";
-                $stmtAdmin = Conexao::executarComParametros($queryAdmin, [':id' => $userId]);
-                if ($stmtAdmin->fetch()) {
-                    $tipo_usuario = 'administrador';
-                }
+                $stmt = Conexao::executarComParametros(
+                    "SELECT id FROM coordenador WHERE id = :id",
+                    [':id' => $userId]
+                );
+                if ($stmt->fetch()) $tipo_usuario = 'coordenador';
             }
 
-            // Verificar se é Coordenador
+            // Aluno
             if (!$tipo_usuario) {
-                $queryCoordenador = "SELECT id FROM coordenador WHERE id = :id";
-                $stmtCoordenador = Conexao::executarComParametros($queryCoordenador, [':id' => $userId]);
-                if ($stmtCoordenador->fetch()) {
-                    $tipo_usuario = 'coordenador';
-                }
-            }
-
-            // Verificar se é Aluno
-            if (!$tipo_usuario) {
-                $queryAluno = "SELECT id FROM aluno WHERE id = :id";
-                $stmtAluno = Conexao::executarComParametros($queryAluno, [':id' => $userId]);
-                if ($stmtAluno->fetch()) {
-                    $tipo_usuario = 'aluno';
-                }
+                $stmt = Conexao::executarComParametros(
+                    "SELECT id FROM aluno WHERE id = :id",
+                    [':id' => $userId]
+                );
+                if ($stmt->fetch()) $tipo_usuario = 'aluno';
             }
 
             if (!$tipo_usuario) {
                 throw new Exception("Tipo de usuário não identificado");
             }
+
+            $_SESSION['usuario_id'] = $userId;
+            $_SESSION['usuario_nome'] = $usuario['nome'];
+            $_SESSION['usuario_tipo'] = $tipo_usuario;
+
+            // (opcional) segurança extra
+            session_regenerate_id(true);
 
             echo json_encode([
                 'success' => true,
@@ -85,12 +94,27 @@ class LoginControle {
             ]);
         }
     }
+
+    // LOGOUT
+    public function logout() {
+        session_start();
+        session_destroy();
+
+        echo json_encode([
+            'success' => true,
+            'message' => 'Logout realizado'
+        ]);
+    }
 }
 
 $controle = new LoginControle();
-$acao = $_POST["acao"];
+$acao = $_POST["acao"] ?? null;
 
 if ($acao == "logar") {
     $controle->logar();
-}   
+}
+
+if ($acao == "logout") {
+    $controle->logout();
+}
 ?>

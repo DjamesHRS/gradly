@@ -30,13 +30,13 @@ async function logar(){
         // Redirecionar baseado no tipo de usuário
         switch(resposta.usuario_tipo){
             case 'orientador':
-                window.location.href = "home_orientador.html";
+                window.location.href = "home_orientador.php";
                 break;
             case 'administrador':
                 window.location.href = "home_admin.html";
                 break;
             case 'coordenador':
-                window.location.href = "home_coordenador.html";
+                window.location.href = "home_coordenador.php";
                 break;
             case 'aluno':
                 window.location.href = "home_aluno.html";
@@ -48,3 +48,4 @@ async function logar(){
         alert("Erro! " + resposta.message);
     }
 }
+
