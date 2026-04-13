@@ -33,7 +33,7 @@ async function logar(){
                 window.location.href = "home_orientador.php";
                 break;
             case 'administrador':
-                window.location.href = "home_admin.html";
+                window.location.href = "home_admin.php";
                 break;
             case 'coordenador':
                 window.location.href = "home_coordenador.php";
