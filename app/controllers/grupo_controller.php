@@ -47,7 +47,6 @@ class GrupoControle {
             $grupo->nome = $_POST['nome'];
             $grupo->descricao = $_POST['descricao'];
             $grupo->participantes = $_POST['participantes'];
-            $projeto = $_POST['projeto'];
             
 
             $grupoId = $grupo->inserir();
@@ -67,15 +66,6 @@ class GrupoControle {
                 Conexao::executarComParametros($query, $parametros);
             }
 
-            
-        $parametros = [
-            ":grupo_id" => $grupoId,
-            ":projeto" => $projeto
-        ];
-
-        $query = "UPDATE projeto_tcc SET grupo_id = :grupo_id WHERE id = :projeto";
-
-        Conexao::executarComParametros($query, $parametros);
             
             $conn->commit();
             echo json_encode([

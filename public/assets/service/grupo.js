@@ -34,14 +34,12 @@ async function adicionar(){
 async function cadastrar(){
     var nome = document.getElementById('nome').value;
     var descricao = document.getElementById('descricao').value;
-    var projeto = document.getElementById('projeto').value;
     var participantes = JSON.stringify(participantesID);
 
     const fd = new FormData();
     fd.append('nome', nome);
     fd.append('descricao', descricao);
     fd.append('participantes', participantes);
-    fd.append('projeto', projeto);
     fd.append('acao', 'cadastrar');
 
     const retorno = await fetch("/gradly/app/controllers/grupo_controller.php",{

@@ -143,6 +143,12 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
                   >
                     Criar Projeto
                   </button>
+
+                        <div class="d-grid mt-4">
+                            <a href="dashboard_aluno.php" class="btn btn-secondary btn-lg">
+                            Voltar
+                            </a>
+                        </div>
                 </div>
               </form>
             </div>

@@ -39,7 +39,7 @@ class CoordenadorControle {
             echo json_encode([
                 'success' => false,
                 'message' => 'Erro ao cadastrar usuário',
-                'error'   => $e->getMessage() // em produção você pode ocultar
+                'error'   => $e->getMessage()
             ]);
         }
     }

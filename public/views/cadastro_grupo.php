@@ -23,6 +23,22 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
 </head>
 
 <body class="bg-light">
+        <!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+    <div class="container">
+        <a class="navbar-brand fw-bold">Gradly</a>
+
+        <div class="d-flex align-items-center">
+            <span class="text-white me-3">
+                <?php echo $_SESSION['usuario_nome']; ?>
+            </span>
+
+            <button class="btn btn-light btn-sm" id="logout">
+                Sair
+            </button>
+        </div>
+    </div>
+</nav>
 
 <div class="container mt-5">
 
@@ -57,14 +73,6 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
 
                         </div>
 
-                        <div class="row">
-
-                            <div class="col-md-6 mb-3">
-                                <label class="form-label">Projeto TCC</label>
-                                <input id="projeto" type="text" name="projeto" class="form-control">
-                            </div>
-                        </div>
-
                         <hr>
 
                         <!-- DADOS DO COORDENADOR -->
@@ -91,6 +99,12 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
                             </button>
                         </div>
 
+                        <div class="d-grid mt-4">
+                            <a href="dashboard_aluno.php" class="btn btn-secondary btn-lg">
+                            Voltar
+                            </a>
+                        </div>
+
                     </form>
 
                 </div>
@@ -103,5 +117,6 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
 
 </div>
 <script src="../assets/service/grupo.js"></script>
+<script src="../assets/service/logout.js"></script>
 </body>
 </html>

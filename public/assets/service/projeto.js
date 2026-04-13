@@ -33,6 +33,6 @@ async function criarProjeto() {
     alert("Sucesso! " + resposta.message);
     window.location.href = "dashboard_aluno.php";
   } else {
-    alert("Erro! " + resposta.message);
+    alert("Erro! " + resposta.message + resposta.error);
   }
 }
