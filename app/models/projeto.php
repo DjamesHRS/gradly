@@ -11,6 +11,7 @@ class Projeto {
     public $temas;
     public $areas;
     public $orientador_id;
+    public $grupo_id;
 
     public function inserir() {
 
@@ -22,13 +23,14 @@ class Projeto {
                 ':objetivo' => $this->objetivo,
                 ':temas' => $this->temas,
                 ':areas' => $this->areas,
-                ':orientador_id' => $this->orientador_id
+                ':orientador_id' => $this->orientador_id,
+                ':grupo_id' => $this->grupo_id
             );
 
             $query = "INSERT INTO projeto_tcc
-                    (titulo, descricao, objetivo, temas, areas, orientador_id)
+                    (titulo, descricao, objetivo, temas, areas, orientador_id, grupo_id)
                     VALUES
-                    (:titulo, :descricao, :objetivo, :temas, :areas, :orientador_id)";
+                    (:titulo, :descricao, :objetivo, :temas, :areas, :orientador_id, :grupo_id)";
 
             Conexao::executarComParametros($query, $parametros);
 

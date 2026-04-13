@@ -1,6 +1,9 @@
 <?php
 include_once("../models/projeto.php");
 include_once("../config/conexao.php");
+
+session_start();
+
 header('Content-Type: application/json; charset=utf-8');
 
 class ProjetoControle {
@@ -11,7 +14,29 @@ class ProjetoControle {
         try {
             $conn->beginTransaction();
 
-            // Criar projeto diretamente com o ID recebido
+            // Obter ID do aluno logado da session
+            $aluno_id = $_SESSION['usuario_id'] ?? null;
+            if (!$aluno_id) {
+                throw new Exception("Aluno não autenticado");
+            }
+
+            // Buscar grupo_id do aluno
+            $stmt = Conexao::executarComParametros(
+                "SELECT grupo_id FROM aluno WHERE id = :id",
+                [':id' => $aluno_id]
+            );
+            $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
+            
+            if (!$aluno) {
+                throw new Exception("Aluno não encontrado");
+            }
+            
+            $grupo_id = $aluno['grupo_id'];
+            if (!$grupo_id) {
+                throw new Exception("Aluno não possui um grupo atribuído");
+            }
+
+            // Criar projeto com o grupo_id do aluno
             $projeto = new Projeto();
             $projeto->titulo = $_POST['titulo'];
             $projeto->descricao = $_POST['descricao'];
@@ -19,6 +44,7 @@ class ProjetoControle {
             $projeto->temas = $_POST['temas'];
             $projeto->areas = $_POST['areas'];
             $projeto->orientador_id = $_POST['orientador_id'];
+            $projeto->grupo_id = $grupo_id;
 
             // (Opcional, mas recomendado) validar se o ID existe
             if (empty($projeto->orientador_id)) {
