@@ -42,7 +42,7 @@ if ($_SESSION['usuario_tipo'] != 'orientador') {
 
         <div class="d-flex align-items-center">
             <span class="text-white me-3">
-                🧑‍💼 <?php echo $_SESSION['usuario_nome']; ?>
+                <?php echo $_SESSION['usuario_nome']; ?>
             </span>
 
             <button class="btn btn-light btn-sm" id="logout">
@@ -63,7 +63,7 @@ if ($_SESSION['usuario_tipo'] != 'orientador') {
         <div class="col-md-4">
             <div class="card shadow text-center card-hover">
                 <div class="card-body">
-                    <h5 class="card-title">📚 Meus Alunos</h5>
+                    <h5 class="card-title">Meus Alunos</h5>
                     <p class="card-text">Gerencie seus alunos</p>
                     <button class="btn btn-primary w-100">Acessar</button>
                 </div>
@@ -74,7 +74,7 @@ if ($_SESSION['usuario_tipo'] != 'orientador') {
         <div class="col-md-4">
             <div class="card shadow text-center card-hover">
                 <div class="card-body">
-                    <h5 class="card-title">📝 Trabalhos</h5>
+                    <h5 class="card-title">Trabalhos</h5>
                     <p class="card-text">Visualizar orientações</p>
                     <button class="btn btn-primary w-100">Acessar</button>
                 </div>
@@ -85,7 +85,7 @@ if ($_SESSION['usuario_tipo'] != 'orientador') {
         <div class="col-md-4">
             <div class="card shadow text-center card-hover">
                 <div class="card-body">
-                    <h5 class="card-title">📅 Agenda</h5>
+                    <h5 class="card-title">Agenda</h5>
                     <p class="card-text">Gerenciar reuniões</p>
                     <button class="btn btn-primary w-100">Acessar</button>
                 </div>

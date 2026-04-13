@@ -32,7 +32,7 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
 
         <div class="d-flex align-items-center">
             <span class="text-white me-3">
-                🧑‍💼 <?php echo $_SESSION['usuario_nome']; ?>
+                <?php echo $_SESSION['usuario_nome']; ?>
             </span>
 
             <button class="btn btn-light btn-sm" id="logout">

@@ -42,7 +42,7 @@ if ($_SESSION['usuario_tipo'] != 'coordenador') {
 
         <div class="d-flex align-items-center">
             <span class="text-white me-3">
-                🧑‍💼 <?php echo $_SESSION['usuario_nome']; ?>
+                <?php echo $_SESSION['usuario_nome']; ?>
             </span>
 
             <button class="btn btn-light btn-sm" id="logout">
@@ -63,7 +63,7 @@ if ($_SESSION['usuario_tipo'] != 'coordenador') {
         <div class="col-md-4">
             <div class="card shadow text-center card-hover">
                 <div class="card-body">
-                    <h5 class="card-title">👨‍🏫 Orientadores</h5>
+                    <h5 class="card-title">Orientadores</h5>
                     <p class="card-text">Gerenciar orientadores</p>
                     <button class="btn btn-primary w-100">Acessar</button>
                 </div>
@@ -74,7 +74,7 @@ if ($_SESSION['usuario_tipo'] != 'coordenador') {
         <div class="col-md-4">
             <div class="card shadow text-center card-hover">
                 <div class="card-body">
-                    <h5 class="card-title">🎓 Alunos</h5>
+                    <h5 class="card-title">Alunos</h5>
                     <p class="card-text">Visualizar alunos</p>
                     <button class="btn btn-primary w-100">Acessar</button>
                 </div>
@@ -85,7 +85,7 @@ if ($_SESSION['usuario_tipo'] != 'coordenador') {
         <div class="col-md-4">
             <div class="card shadow text-center card-hover">
                 <div class="card-body">
-                    <h5 class="card-title">📑 TCCs</h5>
+                    <h5 class="card-title">TCCs</h5>
                     <p class="card-text">Acompanhar trabalhos</p>
                     <button class="btn btn-primary w-100">Acessar</button>
                 </div>
@@ -96,7 +96,7 @@ if ($_SESSION['usuario_tipo'] != 'coordenador') {
         <div class="col-md-4">
             <div class="card shadow text-center card-hover">
                 <div class="card-body">
-                    <h5 class="card-title">📊 Relatórios</h5>
+                    <h5 class="card-title">Relatórios</h5>
                     <p class="card-text">Gerar relatórios</p>
                     <button class="btn btn-primary w-100">Acessar</button>
                 </div>

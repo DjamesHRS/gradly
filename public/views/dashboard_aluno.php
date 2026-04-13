@@ -43,7 +43,7 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
 
         <div class="d-flex align-items-center">
             <span class="text-white me-3">
-                🧑‍💼 <?php echo $_SESSION['usuario_nome']; ?>
+                <?php echo $_SESSION['usuario_nome']; ?>
             </span>
 
             <button class="btn btn-light btn-sm" id="logout">
@@ -64,26 +64,26 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
           <!-- MENU SUPERIOR -->
           <ul class="nav flex-column">
             <li class="nav-item mb-2">
-              <a href="#" class="nav-link text-white">🧭 Dashboard</a>
+              <a href="#" class="nav-link text-white">Dashboard</a>
             </li>
 
             <li class="nav-item mb-2">
-              <a href="#" class="nav-link text-white">📊 Tarefas</a>
+              <a href="#" class="nav-link text-white">Tarefas</a>
             </li>
 
             <li class="nav-item mb-2">
-              <a href="#" class="nav-link text-white">📄 Documento</a>
+              <a href="#" class="nav-link text-white">Documento</a>
             </li>
 
             <li class="nav-item mb-2">
-              <a href="#" class="nav-link text-white">🤖 Pesquisa de IA</a>
+              <a href="#" class="nav-link text-white">Pesquisa de IA</a>
             </li>
           </ul>
 
           <!-- CONFIGURAÇÕES NO FINAL -->
           <ul class="nav flex-column mt-auto">
             <li class="nav-item">
-              <a href="#" class="nav-link text-white">⚙ Configurações</a>
+              <a href="#" class="nav-link text-white">Configurações</a>
             </li>
           </ul>
         </div>
@@ -94,10 +94,10 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
             <h3 class="mb-0">Dashboard</h3>
             <div class="d-flex flex-column gap-2">
               <button id="criar_projeto" class="btn btn-secondary">
-                ➕ Criar novo projeto
+                Criar novo projeto
               </button>
               <button id="criar_grupo" class="btn btn-secondary">
-                ➕Criar grupo
+                Criar grupo
               </button>
             </div>
           </div>
