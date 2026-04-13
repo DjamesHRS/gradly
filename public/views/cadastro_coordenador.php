@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastrar Aluno</title>
+    <title>Cadastrar Coordenador</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,12 +20,12 @@
             <div class="card shadow">
 
                 <div class="card-header bg-primary text-white text-center">
-                    <h4>Cadastrar Aluno</h4>
+                    <h4>Cadastrar Coordenador</h4>
                 </div>
 
                 <div class="card-body">
 
-                    <form action="cadastrar_aluno.php" method="POST">
+                    <form action="cadastrar_coordenador.php" method="POST">
 
                         <!-- DADOS DO USUÁRIO -->
                         <h5 class="mb-3">Dados do Usuário</h5>
@@ -54,32 +54,39 @@
 
                         <hr>
 
-                        <!-- DADOS DO ALUNO -->
-                        <h5 class="mb-3">Dados do Aluno</h5>
+                        <!-- DADOS DO COORDENADOR -->
+                        <h5 class="mb-3">Dados do Coordenador</h5>
 
                         <div class="row">
 
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Matrícula</label>
-                                <input id="matricula" type="text" name="matricula" class="form-control" required>
+                                <label class="form-label">Departamento</label>
+                                <input id="departamento" type="text" name="departamento" class="form-control" required>
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Curso</label>
-                                <input id="curso" type="text" name="curso_id" class="form-control" required>
+                                <label class="form-label">Instituição</label>
+
+                                <select id="instituicao" name="instituicao_id" class="form-select" required>
+                                    <option value="">Selecione</option>
+                                    <option value="1">PUCPR</option>
+                                    <option value="2">UTFPR</option>
+                                    <option value="3">UFPR</option>
+                                </select>
+
                             </div>
 
                         </div>
 
                         <div class="d-grid mt-4">
                             <button type="button" id="cadastrar" class="btn btn-primary">
-                                Cadastrar Aluno
+                                Cadastrar Coordenador
                             </button>
                         </div>
 
                     </form>
                         <div class="d-grid mt-4">
-                            <a href="login.html" class="btn btn-secondary btn-lg">
+                            <a href="login.php" class="btn btn-secondary btn-lg">
                             Voltar
                             </a>
                         </div>
@@ -93,6 +100,6 @@
     </div>
 
 </div>
-<script src="../assets/service/aluno.js"></script>
+<script src="../assets/service/coordenador.js"></script>
 </body>
 </html>

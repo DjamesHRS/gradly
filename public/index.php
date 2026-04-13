@@ -1,5 +1,5 @@
 <script>
     document.addEventListener("DOMContentLoaded", function() {
-        window.location.href = "views/login.html";
+        window.location.href = "views/login.php";
     });
 </script>

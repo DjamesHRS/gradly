@@ -38,7 +38,7 @@
                         </div>
 
                         <div class="d-grid mt-4">
-                            <p>Novo por aqui? <a href="../views/tipo_usuario.html">Cadastre-se</a>!</p>
+                            <p>Novo por aqui? <a href="../views/tipo_usuario.php">Cadastre-se</a>!</p>
                         </div>
                         <div class="d-grid mt-4">
                             <button type="button" id="logar" class="btn btn-primary">

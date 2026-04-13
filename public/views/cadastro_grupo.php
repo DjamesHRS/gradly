@@ -1,3 +1,16 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login.php");
+    exit;
+}
+
+if ($_SESSION['usuario_tipo'] != 'aluno') {
+    echo "Acesso negado";
+    exit;
+}
+?>
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>

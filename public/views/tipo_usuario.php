@@ -40,7 +40,7 @@
                             Coordenador
                         </button>
                         <div class="d-grid mt-4">
-                            <a href="login.html" class="btn btn-secondary btn-lg">
+                            <a href="login.php" class="btn btn-secondary btn-lg">
                             Voltar
                             </a>
                         </div>

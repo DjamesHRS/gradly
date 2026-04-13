@@ -2,7 +2,7 @@
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <title>Cadastrar Orientador</title>
+    <title>Cadastrar Aluno</title>
 
     <!-- Bootstrap 5 -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -20,12 +20,12 @@
             <div class="card shadow">
 
                 <div class="card-header bg-primary text-white text-center">
-                    <h4>Cadastrar Orientador</h4>
+                    <h4>Cadastrar Aluno</h4>
                 </div>
 
                 <div class="card-body">
 
-                    <form action="cadastrar_orientador.php" method="POST">
+                    <form action="cadastrar_aluno.php" method="POST">
 
                         <!-- DADOS DO USUÁRIO -->
                         <h5 class="mb-3">Dados do Usuário</h5>
@@ -54,32 +54,32 @@
 
                         <hr>
 
-                        <h5 class="mb-3">Dados do Orientador</h5>
+                        <!-- DADOS DO ALUNO -->
+                        <h5 class="mb-3">Dados do Aluno</h5>
 
                         <div class="row">
 
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Área de Atuação</label>
-                                <input id="atuacao" type="text" name="atuacao" class="form-control" required>
+                                <label class="form-label">Matrícula</label>
+                                <input id="matricula" type="text" name="matricula" class="form-control" required>
                             </div>
 
                             <div class="col-md-6 mb-3">
-                                <label class="form-label">Titulacao</label>
-                                <input id="titulacao" type="text" name="titulacao" class="form-control" required>
+                                <label class="form-label">Curso</label>
+                                <input id="curso" type="text" name="curso_id" class="form-control" required>
                             </div>
-
 
                         </div>
 
                         <div class="d-grid mt-4">
-                            <button type="button" id="cadastrarOrientador" class="btn btn-primary">
-                                Cadastrar Orientador
+                            <button type="button" id="cadastrar" class="btn btn-primary">
+                                Cadastrar Aluno
                             </button>
                         </div>
 
                     </form>
                         <div class="d-grid mt-4">
-                            <a href="login.html" class="btn btn-secondary btn-lg">
+                            <a href="login.php" class="btn btn-secondary btn-lg">
                             Voltar
                             </a>
                         </div>
@@ -93,6 +93,6 @@
     </div>
 
 </div>
-<script src="../assets/service/orientador.js"></script>
+<script src="../assets/service/aluno.js"></script>
 </body>
 </html>
