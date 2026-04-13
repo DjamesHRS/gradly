@@ -62,8 +62,6 @@ CREATE TABLE projeto_tcc(
     areas VARCHAR(255),
     estado VARCHAR(50),
     orientador_id INT,
-    grupo_id INT,
-    FOREIGN KEY (grupo_id) REFERENCES grupo(id),
     FOREIGN KEY (orientador_id) REFERENCES orientador(id)
 );
 
