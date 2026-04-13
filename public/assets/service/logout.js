@@ -9,5 +9,5 @@ async function logout() {
         body: new URLSearchParams({ acao: "logout" })
     });
 
-    window.location.href = "login.html";
+    window.location.href = "login.php";
 }

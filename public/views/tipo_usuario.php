@@ -60,13 +60,13 @@
 <script>
     function redirecionar(tipo) {
         if (tipo === 'aluno') {
-            window.location.href = 'cadastro_aluno.html';
+            window.location.href = 'cadastro_aluno.php';
         } 
         else if (tipo === 'orientador') {
-            window.location.href = 'cadastro_orientador.html';
+            window.location.href = 'cadastro_orientador.php';
         } 
         else if (tipo === 'coordenador') {
-            window.location.href = 'cadastro_coordenador.html';
+            window.location.href = 'cadastro_coordenador.php';
         }
     }
 </script>
