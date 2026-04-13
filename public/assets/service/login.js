@@ -39,7 +39,7 @@ async function logar(){
                 window.location.href = "home_coordenador.php";
                 break;
             case 'aluno':
-                window.location.href = "home_aluno.html";
+                window.location.href = "dashboard_aluno.php";
                 break;
             default:
                 alert("Tipo de usuário inválido");

@@ -6,12 +6,12 @@ document.addEventListener("DOMContentLoaded", function () {
   // BOTÃO CRIAR PROJETO
   btnProjeto.addEventListener("click", function () {
     // redireciona para tela de cadastro de projeto
-    window.location.href = "cadastro_projeto.html";
+    window.location.href = "cadastro_projeto.php";
   });
 
   // BOTÃO CRIAR GRUPO
   btnGrupo.addEventListener("click", function () {
     // redireciona para tela de cadastro de grupo
-    window.location.href = "cadastro_grupo.html";
+    window.location.href = "cadastro_grupo.php";
   });
 });

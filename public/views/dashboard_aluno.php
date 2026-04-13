@@ -1,3 +1,17 @@
+<?php
+session_start();
+
+if (!isset($_SESSION['usuario_id'])) {
+    header("Location: login.html");
+    exit;
+}
+
+if ($_SESSION['usuario_tipo'] != 'aluno') {
+    echo "Acesso negado";
+    exit;
+}
+?>
+
 <!doctype html>
 <html lang="pt-br">
   <head>
@@ -21,6 +35,24 @@
   </head>
 
   <body class="bg-light">
+
+<!-- NAVBAR -->
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow">
+    <div class="container">
+        <a class="navbar-brand fw-bold">Gradly</a>
+
+        <div class="d-flex align-items-center">
+            <span class="text-white me-3">
+                🧑‍💼 <?php echo $_SESSION['usuario_nome']; ?>
+            </span>
+
+            <button class="btn btn-light btn-sm" id="logout">
+                Sair
+            </button>
+        </div>
+    </div>
+</nav>
+
     <div class="container-fluid">
       <div class="row">
         <!-- MENU LATERAL -->
@@ -124,5 +156,7 @@
       </div>
     </div>
     <script src="../assets/service/dashboard_aluno.js"></script>
+    
+<script src="../assets/service/logout.js"></script>
   </body>
 </html>
