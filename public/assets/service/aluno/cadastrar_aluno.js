@@ -29,8 +29,7 @@ async function cadastrar(){
 
     const resposta = await retorno.json();
         if(resposta.success){
-            notificarSucesso(resposta.message);
-            window.location.href = "/gradly/public/views/login.php";
+            notificarSucesso(resposta.message, "/gradly/public/views/login.php");
         }else{
             notificarErro(resposta.message);
         }

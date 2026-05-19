@@ -300,7 +300,7 @@ if ($_SESSION['usuario_tipo'] != 'coordenador') {
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
   <script src="../../assets/service/controle/logout.js"></script>
   <script type="module" src="../../assets/service/coordenador/buscar_coordenador.js"></script>
-  <script src="../../assets/service/coordenador/editar_coordenador.js"></script>
+  <script type="module" src="../../assets/service/coordenador/editar_coordenador.js"></script>
 
 </body>
 

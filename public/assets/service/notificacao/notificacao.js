@@ -154,9 +154,19 @@ if (!document.getElementById('notificacao-styles')) {
   document.head.appendChild(style);
 }
 
-export  function notificarSucesso(mensagem) {
+export function notificarSucesso(mensagem, caminho) {
   const overlay = document.createElement('div');
   overlay.className = 'notificacao-overlay';
+
+  function fecharModal() {
+    overlay.remove();
+    if(caminho){
+      window.location.href = caminho;
+    }else{
+      window.location.reload();
+    }
+  }
+
   overlay.innerHTML = `
     <div class="notificacao-modal">
       <div class="notificacao-icon sucesso">
@@ -166,22 +176,27 @@ export  function notificarSucesso(mensagem) {
       </div>
       <h2 class="notificacao-titulo">Sucesso!</h2>
       <p class="notificacao-mensagem">${mensagem}</p>
-      <button class="notificacao-botao" onclick="this.closest('.notificacao-overlay').remove()">
+      <button class="notificacao-botao">
         Fechar
       </button>
     </div>
   `;
+
   document.body.appendChild(overlay);
+
+  overlay
+    .querySelector('.notificacao-botao')
+    .addEventListener('click', fecharModal);
 
   overlay.addEventListener('click', (e) => {
     if (e.target === overlay) {
-      overlay.remove();
+      fecharModal();
     }
   });
 
   setTimeout(() => {
     if (overlay.parentNode) {
-      overlay.remove();
+      fecharModal();
     }
   }, 3000);
 }

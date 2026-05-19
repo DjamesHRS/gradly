@@ -29,8 +29,7 @@ async function cadastrar(){
 
     const resposta = await retorno.json();
         if(resposta.success){
-            notificarSucesso(resposta.message);
-            window.location.href = "../login.php";
+            notificarSucesso(resposta.message, "../login.php");
         }else{
             notificarErro(resposta.message);
         }

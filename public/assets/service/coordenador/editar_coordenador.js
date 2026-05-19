@@ -1,3 +1,4 @@
+import {notificarErro, notificarInfo, notificarSucesso} from "../notificacao/notificacao.js"
 document.getElementById("enviar_edicao").addEventListener("click", async (e) => {
     e.preventDefault();
     
@@ -16,12 +17,11 @@ document.getElementById("enviar_edicao").addEventListener("click", async (e) => 
 
     const resposta = await retorno.json();
     if (resposta.success) {
-        alert("Coordenador atualizado com sucesso!");
         const novoNome = document.getElementById("input-nome").value;
         localStorage.setItem("usuario_nome", novoNome);
-        window.location.reload();
+        notificarSucesso(resposta.message);
     } else {
-        alert("Erro ao atualizar coordenador: " + resposta.message);
+        notificarErro(resposta.message);
         console.log(resposta.error);
     }
 });
