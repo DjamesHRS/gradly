@@ -6,6 +6,12 @@ header('Content-Type: application/json; charset=utf-8');
 
 class GrupoControle {
 
+    private function validarAlunoLogado() {
+        if (!isset($_SESSION['usuario_id']) || $_SESSION['usuario_tipo'] !== 'aluno') {
+            throw new Exception("Acesso não autorizado");
+        }
+    }
+
     public function adicionar() {
         $email = $_POST['email'];
 
@@ -41,18 +47,25 @@ class GrupoControle {
         $conn = Conexao::conectar();
 
         try {
+            $alunoLogadoId = $_SESSION['usuario_id'] ?? null;
+            if (!$alunoLogadoId) {
+                throw new Exception("Usuário não autenticado");
+            }
+
             $conn->beginTransaction();
 
             $grupo = new Grupo();
             $grupo->nome = $_POST['nome'];
             $grupo->descricao = $_POST['descricao'];
-            $grupo->participantes = $_POST['participantes'];
-            
 
             $grupoId = $grupo->inserir();
 
+            $participantes = json_decode($_POST['participantes'], true) ?: [];
 
-            $participantes = json_decode($_POST['participantes'], true);
+            // Quem cria o grupo também entra como participante
+            if (!in_array((int) $alunoLogadoId, array_map('intval', $participantes), true)) {
+                $participantes[] = (int) $alunoLogadoId;
+            }
 
             foreach ($participantes as $alunoId) {
 
@@ -127,11 +140,83 @@ class GrupoControle {
             'grupos' => $resultado
         ]);
     }
+
+    public function buscarMeuGrupo() {
+        try {
+            $this->validarAlunoLogado();
+
+            $stmt = Conexao::executarComParametros(
+                "SELECT a.grupo_id, g.nome AS grupo_nome
+                 FROM aluno a
+                 LEFT JOIN grupo g ON g.id = a.grupo_id
+                 WHERE a.id = :id",
+                [':id' => $_SESSION['usuario_id']]
+            );
+
+            $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$aluno || !$aluno['grupo_id']) {
+                echo json_encode([
+                    'success' => true,
+                    'tem_grupo' => false,
+                ]);
+                return;
+            }
+
+            echo json_encode([
+                'success' => true,
+                'tem_grupo' => true,
+                'grupo_id' => $aluno['grupo_id'],
+                'grupo_nome' => $aluno['grupo_nome'],
+            ]);
+
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
+
+    public function sairGrupo() {
+        try {
+            $this->validarAlunoLogado();
+
+            $stmt = Conexao::executarComParametros(
+                "SELECT grupo_id FROM aluno WHERE id = :id",
+                [':id' => $_SESSION['usuario_id']]
+            );
+
+            $aluno = $stmt->fetch(PDO::FETCH_ASSOC);
+
+            if (!$aluno || !$aluno['grupo_id']) {
+                throw new Exception("Você não está em nenhum grupo");
+            }
+
+            Conexao::executarComParametros(
+                "UPDATE aluno SET grupo_id = NULL WHERE id = :id",
+                [':id' => $_SESSION['usuario_id']]
+            );
+
+            echo json_encode([
+                'success' => true,
+                'message' => 'Você saiu do grupo com sucesso',
+            ]);
+
+        } catch (Exception $e) {
+            http_response_code(500);
+            echo json_encode([
+                'success' => false,
+                'message' => $e->getMessage(),
+            ]);
+        }
+    }
 }
 
 
 $controle = new GrupoControle();
-$acao = $_POST["acao"];
+$acao = $_POST["acao"] ?? null;
 
 if ($acao == "cadastrar") {
     $controle->cadastrar();
@@ -141,5 +226,18 @@ if ($acao == "cadastrar") {
 
 } else if ($acao == "buscarGrupos") {
     $controle->buscarGrupos();
+
+} else if ($acao == "buscarMeuGrupo") {
+    $controle->buscarMeuGrupo();
+
+} else if ($acao == "sairGrupo") {
+    $controle->sairGrupo();
+
+} else {
+    http_response_code(400);
+    echo json_encode([
+        'success' => false,
+        'message' => 'Ação inválida',
+    ]);
 }
 ?>

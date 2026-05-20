@@ -1,8 +1,15 @@
 import { notificarSucesso, notificarErro } from '../notificacao/notificacao.js';
 
-document.getElementById("criar_projeto").addEventListener("click", (e) => {
-  e.preventDefault();
-  criarProjeto();
+document.addEventListener("DOMContentLoaded", () => {
+  document.getElementById("criar_projeto")?.addEventListener("click", (e) => {
+    e.preventDefault();
+    criarProjeto();
+  });
+
+  document.getElementById("form_criar_projeto")?.addEventListener("submit", (e) => {
+    e.preventDefault();
+    criarProjeto();
+  });
 });
 
 async function criarProjeto() {
@@ -32,8 +39,9 @@ async function criarProjeto() {
 
   const resposta = await retorno.json();
   if (resposta.success) {
-    notificarSucesso(resposta.message, "aluno/dashboard_aluno.php");
+    notificarSucesso(resposta.message, "dashboard_aluno.php");
   } else {
-    notificarErro(resposta.message + resposta.error);
+    const detalhe = resposta.error ? ": " + resposta.error : "";
+    notificarErro(resposta.message + detalhe);
   }
 }

@@ -51,7 +51,7 @@ async function cadastrar(){
 
     const resposta = await retorno.json();
         if(resposta.success){
-            notificarSucesso(resposta.message, "aluno/dashboard_aluno.php");
+            notificarSucesso(resposta.message, "dashboard_aluno.php");
         }else{
             notificarErro(resposta.message);
         }

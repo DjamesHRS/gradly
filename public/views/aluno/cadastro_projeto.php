@@ -149,7 +149,7 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
     <ul class="snav">
       <li><a href="cadastro_projeto.php" class="active">Criar Projeto</a></li>
       <li><a href="#">Tarefas</a></li>
-      <li><a href="#">Documento</a></li>
+      <li><a href="documentos.php">Documento</a></li>
     </ul>
   </aside>
 
@@ -166,7 +166,7 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
           </div>
 
           <div class="card-body">
-            <form id="form_criar_projeto" action="criar_projeto.php" method="POST" novalidate>
+            <form id="form_criar_projeto" action="#" method="POST" novalidate>
               <div class="mb-3">
                 <label for="titulo" class="form-label">Título</label>
                 <input id="titulo" name="titulo" type="text" class="form-control" required placeholder="Ex: Machine Learning para simualação de bactérias" />
