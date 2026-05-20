@@ -12,16 +12,13 @@ class Grupo {
 
         try {
 
-            $parametros = Array(
-                ':id' => $this->id,
+            $parametros = [
                 ':nome' => $this->nome,
                 ':descricao' => $this->descricao,
-            );
+            ];
 
-            $query = "INSERT INTO grupo
-                    (id, nome, descricao, dataCriacao)
-                    VALUES
-                    (:id, :nome, :descricao, NOW())";
+            $query = "INSERT INTO grupo (nome, descricao, dataCriacao)
+                    VALUES (:nome, :descricao, NOW())";
 
             Conexao::executarComParametros($query, $parametros);
 

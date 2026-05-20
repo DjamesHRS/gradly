@@ -21,7 +21,7 @@ async function buscarProjeto() {
 
     if (!resposta.success || !resposta.data) {
       if (container) {
-        renderEmptyState(container, resposta.message);
+        renderEmptyState(container, resposta.message, resposta.tem_grupo);
       }
       return;
     }
@@ -215,7 +215,7 @@ function renderDocumentos(documentos) {
 //RENDERIZA ESTADO VAZIO QUANDO NAO EXISTE PROJETO CADASTRADO
 
 
-function renderEmptyState(container, message) {
+function renderEmptyState(container, message, temGrupo) {
   const empty = document.createElement("div");
   empty.className = "empty-state";
 
@@ -233,15 +233,18 @@ function renderEmptyState(container, message) {
   link.href = "cadastro_projeto.php";
   link.textContent = "Criar projeto";
 
-  const group = document.createElement("a");
-  group.className = "btn-primary";
-  group.href = "../cadastro_grupo.php";
-  group.textContent = "Criar grupo";
-
   empty.appendChild(title);
   empty.appendChild(subtitle);
   empty.appendChild(link);
-  empty.appendChild(group);
+
+  if (!temGrupo) {
+    const group = document.createElement("a");
+    group.className = "btn-primary";
+    group.href = "cadastro_grupo.php";
+    group.textContent = "Criar grupo";
+    empty.appendChild(group);
+  }
+
   container.appendChild(empty);
 }
 

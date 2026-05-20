@@ -120,7 +120,8 @@ class ProjetoControle {
                 echo json_encode([
                     'success' => true,
                     'message' => 'Aluno sem grupo associado',
-                    'data' => null
+                    'data' => null,
+                    'tem_grupo' => false
                 ]);
                 return;
             }
@@ -131,7 +132,8 @@ class ProjetoControle {
 
             echo json_encode([
                 'success' => true,
-                'data' => $projeto ?: null
+                'data' => $projeto ?: null,
+                'tem_grupo' => true
             ]);
         } catch (Exception $e) {
             http_response_code(500);
