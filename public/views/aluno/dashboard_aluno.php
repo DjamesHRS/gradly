@@ -302,7 +302,7 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
   </div>
 </main>
 
-<script src="../../assets/service/projeto/buscar_projeto.js"></script>
+<script type="module" src="../../assets/service/projeto/buscar_projeto.js"></script>
 <script type="module" src="../../assets/service/aluno/dashboard_aluno.js"></script>
 <script src="../../assets/service/controle/logout.js"></script>
 </body>

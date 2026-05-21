@@ -228,14 +228,9 @@ function renderEmptyState(container, message, temGrupo) {
   subtitle.style.marginBottom = "12px";
   subtitle.textContent = message || "Cadastre um projeto para visualizar os detalhes.";
 
-  const link = document.createElement("a");
-  link.className = "btn-primary";
-  link.href = "cadastro_projeto.php";
-  link.textContent = "Criar projeto";
-
   empty.appendChild(title);
   empty.appendChild(subtitle);
-  empty.appendChild(link);
+  //empty.appendChild(link);
 
   if (!temGrupo) {
     const group = document.createElement("a");

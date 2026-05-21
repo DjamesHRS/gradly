@@ -109,11 +109,11 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
     <button class="icon-btn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg></button>
     <button class="icon-btn"><svg viewBox="0 0 24 24"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
     <button class="icon-btn"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3"/><path d="M19.07 4.93l-1.41 1.41M4.93 4.93l1.41 1.41M12 2v2M12 20v2M2 12h2M20 12h2M19.07 19.07l-1.41-1.41M4.93 19.07l1.41-1.41"/></svg></button>
-    <span style="text-transform:capitalize">
-      <?php
-      echo $_SESSION['usuario_nome'];
-      ?>
-    </span>
+    <a href="perfil.php?id=<?php echo $_SESSION['usuario_id']; ?>" style="text-decoration:none;color:inherit;">
+      <span style="text-transform:capitalize">
+        <?php echo $_SESSION['usuario_nome']; ?>
+      </span>
+    </a>
     <button class="icon-btn" id="logout">
       <svg viewBox="0 0 24 24" width="16" height="16" style="stroke:gray;fill:none;stroke-width:1.75;stroke-linecap:round;stroke-linejoin:round;">
         <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
