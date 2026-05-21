@@ -193,13 +193,6 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
                 </div>
               </div>
 
-              <h5 class="mb-3">Orientador</h5>
-
-              <div class="mb-3">
-                <label for="orientador_id" class="form-label">ID do Orientador</label>
-                <input id="orientador_id" name="orientador_id" type="text" class="form-control" required placeholder="ID ou matrícula do orientador" />
-              </div>
-
               <div class="d-flex gap-2 mt-4">
                 <button type="button" id="criar_projeto" class="btn-primary">Criar Projeto</button>
                 <a href="dashboard_aluno.php" class="btn-outline">Voltar</a>

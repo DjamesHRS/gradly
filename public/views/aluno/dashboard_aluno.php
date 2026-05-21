@@ -297,7 +297,12 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
       </div>
 
       <!-- PROJECT CARD (renderizado via JS) -->
-      <div id="projectContainer" class="fi fi-4"></div>
+      <div id="projectContainer" class="fi fi-4">
+      </div>
+      <br>
+      <div>
+          <a href="documentos.php"><button class="btn-primary" style="width:100%; display: flex; justify-content: center;">Enviar Documento</button></a>
+      </div>
     </div>
   </div>
 </main>

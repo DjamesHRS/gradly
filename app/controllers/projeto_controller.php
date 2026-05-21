@@ -43,13 +43,7 @@ class ProjetoControle {
             $projeto->objetivo = $_POST['objetivo'];
             $projeto->temas = $_POST['temas'];
             $projeto->areas = $_POST['areas'];
-            $projeto->orientador_id = $_POST['orientador_id'];
             $projeto->grupo_id = $grupo_id;
-
-            // (Opcional, mas recomendado) validar se o ID existe
-            if (empty($projeto->orientador_id)) {
-                throw new Exception("ID do orientador não informado");
-            }
 
             $projeto->inserir();
 

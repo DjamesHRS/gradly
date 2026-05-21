@@ -1,17 +1,27 @@
 import { notificarSucesso, notificarErro } from '../notificacao/notificacao.js';
 
-document.getElementById("cadastrar").addEventListener("click", (e) =>{
-    e.preventDefault();
-    cadastrar();
-})
+const btnCadastrar = document.getElementById("cadastrar");
+const btnAdicionar = document.getElementById("adicionar");
 
-document.getElementById("adicionar").addEventListener("click", (e) =>{
-    
-    adicionar();
-})
+if(btnCadastrar){
+    btnCadastrar.addEventListener("click", (e) =>{
+        e.preventDefault();
+        cadastrar();
+    });
+}
+
+if(btnAdicionar){
+    btnAdicionar.addEventListener("click", (e) =>{
+        e.preventDefault();
+        adicionar();
+    });
+}
 
 const participantesID = [];
+const participantes = [];
+
 async function adicionar(){
+
     var email = document.getElementById('email').value;
 
     const fd = new FormData();
@@ -24,16 +34,41 @@ async function adicionar(){
     }); 
 
     const resposta = await retorno.json();
-        if(resposta.success){
-            notificarSucesso(resposta.message);
-            participantesID.push(resposta.aluno_id);
-            document.getElementById('email').value = "";            
-        } else{
-            notificarErro(resposta.message);
-        }
+
+    if(resposta.success){        
+        participantesID.push(resposta.aluno_id);
+
+        participantes.push({
+            email: email
+        });
+
+        atualizarParticipantes();
+
+        document.getElementById('email').value = "";
+
+    } else{
+        notificarErro(resposta.message);
+    }
+}
+
+function atualizarParticipantes(){
+
+    const divParticipantes = document.getElementById('participantes');
+
+    divParticipantes.innerHTML = "";
+
+    participantes.forEach((participante) => {
+
+        divParticipantes.innerHTML += `
+            <div class="border rounded p-2 mb-2 mt-2">
+                <small>${participante.email}</small>
+            </div>
+        `;
+    });
 }
 
 async function cadastrar(){
+
     var nome = document.getElementById('nome').value;
     var descricao = document.getElementById('descricao').value;
     var participantes = JSON.stringify(participantesID);
@@ -50,11 +85,10 @@ async function cadastrar(){
     });
 
     const resposta = await retorno.json();
-        if(resposta.success){
-            notificarSucesso(resposta.message, "dashboard_aluno.php");
-        }else{
-            notificarErro(resposta.message);
-        }
 
-
+    if(resposta.success){
+        notificarSucesso(resposta.message, "cadastro_projeto.php");
+    }else{
+        notificarErro(resposta.message);
+    }
 }

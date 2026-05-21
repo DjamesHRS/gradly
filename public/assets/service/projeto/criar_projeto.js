@@ -18,7 +18,6 @@ async function criarProjeto() {
   var objetivo = document.getElementById("objetivo").value;
   var temas = document.getElementById("temas").value;
   var areas = document.getElementById("areas").value;
-  var orientador_id = document.getElementById("orientador_id").value;
 
   const fd = new FormData();
   fd.append("titulo", titulo);
@@ -26,7 +25,6 @@ async function criarProjeto() {
   fd.append("objetivo", objetivo);
   fd.append("temas", temas);
   fd.append("areas", areas);
-  fd.append("orientador_id", orientador_id);
   fd.append("acao", "criar");
 
   const retorno = await fetch(

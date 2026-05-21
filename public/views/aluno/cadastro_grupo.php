@@ -191,7 +191,7 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
                 </div>
 
               <div class="d-flex gap-2 mt-4">
-                <button type="button" id="criar_projeto" class="btn-primary">Criar Projeto</button>
+                <button type="button" id="cadastrar" class="btn-primary">Criar Grupo</button>
                 <a href="dashboard_aluno.php" class="btn-outline">Voltar</a>
               </div>
             </form>
