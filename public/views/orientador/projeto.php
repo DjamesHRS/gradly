@@ -218,9 +218,9 @@ if ($_SESSION['usuario_tipo'] != 'orientador') {
       </svg>
     </button>
 
-    <span style="text-transform:capitalize">
-      <?php echo $_SESSION['usuario_nome']; ?>
-    </span>
+    <a href="perfil.php?id=<?php echo $_SESSION['usuario_id']; ?>" style="text-decoration:none;color:inherit;">
+      <span style="text-transform:capitalize"><?php echo $_SESSION['usuario_nome']; ?></span>
+    </a>
 
     <button class="icon-btn" id="logout">
       <svg viewBox="0 0 24 24">
@@ -292,7 +292,7 @@ if ($_SESSION['usuario_tipo'] != 'orientador') {
 </main>
 
 <script src="../../assets/service/controle/logout.js"></script>
-<script src="../../assets/service/projeto/buscar_projeto_orientador.js"></script>
+<script type="module" src="../../assets/service/projeto/buscar_projeto_orientador.js"></script>
 
 </body>
 </html>

@@ -1,3 +1,5 @@
+import { notificarErro, notificarSucesso } from "../notificacao/notificacao.js";
+
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
   const grupoId = params.get("grupo_id");
@@ -44,6 +46,7 @@ async function buscarProjetos(grupoId) {
       });
     }
   } catch (error) {
+    notificarErro("Não foi possível carregar o projeto.");
     if (container) {
       renderEmptyState(container, "Não foi possível carregar o projeto.");
     }
@@ -273,10 +276,10 @@ function renderDocumentos(documentos) {
               if (resposta.success) {
                 location.reload();
               } else {
-                alert(resposta.message || "Erro ao excluir");
+                notificarErro(resposta.message || "Erro ao excluir");
               }
             } catch (error) {
-              alert("Erro ao excluir comentario");
+              notificarErro("Erro ao excluir comentario");
             }
           });
 
@@ -372,10 +375,10 @@ function renderDocumentos(documentos) {
 
             location.reload();
           } else {
-            alert(resposta.message || "Erro ao comentar");
+            notificarErro(resposta.message || "Erro ao comentar");
           }
         } catch (error) {
-          alert("Erro ao enviar comentario");
+          notificarErro("Erro ao enviar comentario");
         }
 
         submitBtn.disabled = false;

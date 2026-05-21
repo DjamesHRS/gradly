@@ -32,6 +32,26 @@ class Orientador {
         }
     }
 
+    public function editarOrientador() {
+        $conn = Conexao::conectar();
+
+        $sql = "
+            UPDATE orientador
+            SET
+                areaAtuacao = :areaAtuacao,
+                titulacao = :titulacao
+            WHERE id = :id
+        ";
+
+        $stmt = $conn->prepare($sql);
+
+        $stmt->bindValue(":areaAtuacao", $this->areaAtuacao);
+        $stmt->bindValue(":titulacao", $this->titulacao);
+        $stmt->bindValue(":id", $this->id);
+
+        return $stmt->execute();
+    }
+
     public static function contar() {
         $query = "SELECT COUNT(*) AS total FROM orientador";
 
