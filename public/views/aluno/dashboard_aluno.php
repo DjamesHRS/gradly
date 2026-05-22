@@ -230,30 +230,7 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
     </div>
     <svg class="chev" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
   </div>
-  <ul class="snav"><li><a href="#" class="active">Dashboard</a></li></ul>
-
-  <div class="sec-label" style="margin-top:.5rem;">
-    <div class="sec-label-inner">
-      <svg class="si" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/></svg>
-      Projeto
-    </div>
-    <svg class="chev" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-  </div>
-  <ul class="snav">
-    <li><a href="#">Tarefas</a></li>
-    <li><a href="documentos.php">Documento</a></li>
-    <li><a href="cadastro_grupo.php">Grupo</a></li>
-  </ul>
-
-  <div class="sec-label" style="margin-top:.5rem;">
-    <div class="sec-label-inner">
-      <svg class="si" viewBox="0 0 24 24"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-      Ferramentas
-    </div>
-    <svg class="chev" viewBox="0 0 24 24"><polyline points="18 15 12 9 6 15"/></svg>
-  </div>
-  <ul class="snav"><li><a href="#">Pesquisa de IA</a></li></ul>
-
+  <ul class="snav"><li><a href="dashboard_aluno.php" class="active">Dashboard</a></li></ul>
 </aside>
 
 <!-- MAIN -->
@@ -298,10 +275,6 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
 
       <!-- PROJECT CARD (renderizado via JS) -->
       <div id="projectContainer" class="fi fi-4">
-      </div>
-      <br>
-      <div>
-          <a href="documentos.php"><button class="btn-primary" style="width:100%; display: flex; justify-content: center;">Enviar Documento</button></a>
       </div>
     </div>
   </div>

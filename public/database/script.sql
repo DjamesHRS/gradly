@@ -150,7 +150,7 @@
     (1,  'Carlos Silva',    'carlos@gradly.com',    '$2y$10$N9qo8uLOickgziQueC7B5OPST9QJqq8E4fnxQSDtqKPVXzXvgHAm', NOW()),
     (2,  'Maria Souza',     'maria@gradly.com',     '$2y$10$N9qo8uLOickgziQueC7B5OPST9QJqq8E4fnxQSDtqKPVXzXvgHAm', NOW()),
     (3,  'Joao Pereira',    'joao@gradly.com',      '$2y$10$N9qo8uLOickgziQueC7B5OPST9QJqq8E4fnxQSDtqKPVXzXvgHAm', NOW()),
-    (4,  'Ana Costa',       'ana@gradly.com',        '$2y$10$N9qo8uLOickgziQueC7B5OPST9QJqq8E4fnxQSDtqKPVXzXvgHAm', NOW()),
+    (4,  'Ana Costa',       'ana@gradly.com',       '$2y$10$N9qo8uLOickgziQueC7B5OPST9QJqq8E4fnxQSDtqKPVXzXvgHAm', NOW()),
     (5,  'Pedro Lima',      'pedro@gradly.com',     '$2y$10$N9qo8uLOickgziQueC7B5OPST9QJqq8E4fnxQSDtqKPVXzXvgHAm', NOW()),
     -- Administradores
     (6,  'Lucas Martins',   'lucas@gradly.com',     '$2y$10$N9qo8uLOickgziQueC7B5OPST9QJqq8E4fnxQSDtqKPVXzXvgHAm', NOW()),

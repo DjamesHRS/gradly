@@ -209,23 +209,7 @@ if ((int) $idPerfil !== (int) $_SESSION['usuario_id']) {
       </div>
     </div>
     <ul class="snav">
-      <li><a href="dashboard_aluno.php">Dashboard</a></li>
-      <li><a href="perfil.php?id=<?php echo $_SESSION['usuario_id']; ?>" class="active">Perfil</a></li>
-    </ul>
-    <div class="sec-label" style="margin-top:.5rem;">
-      <div class="sec-label-inner">
-        <svg class="si" viewBox="0 0 24 24">
-          <ellipse cx="12" cy="5" rx="9" ry="3" />
-          <path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3" />
-          <path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5" />
-        </svg>
-        Projeto
-      </div>
-    </div>
-    <ul class="snav">
-      <li><a href="cadastro_projeto.php">Criar projeto</a></li>
-      <li><a href="documentos.php">Documento</a></li>
-      <li><a href="cadastro_grupo.php">Criar grupo</a></li>
+<li><a href="dashboard_aluno.php" class="active">Dashboard</a></li>
     </ul>
   </aside>
 

@@ -28,8 +28,8 @@ async function buscarAlunos(){
                     <td>${aluno.titulo_projeto}</td>
                     <td>
                         <button 
-                            class="btn btn-primary btn-sm"
-                            onclick="abrirProjeto(${aluno.grupo_id})"
+                            class="btn btn-primary btn-sm btn-ver-projeto"
+                            data-grupo="${aluno.grupo_id}"
                         >
                             Ver Projeto
                         </button>
@@ -38,13 +38,21 @@ async function buscarAlunos(){
             `;
         });
         document.getElementById("alunos-table-body").innerHTML = linhas;
+        document.querySelectorAll(".btn-ver-projeto").forEach((botao) => {
+            botao.addEventListener("click", () => {
+                const grupoId = botao.dataset.grupo;
+
+                window.location.href =
+                    `/gradly/public/views/coordenador/projeto.php?grupo_id=${grupoId}`;
+            });
+        });
     }else{
         notificarErro(resposta.message);
         console.log(resposta.error)
     }
 }
 
-function abrirProjeto(grupoId){
+window.abrirProjeto = function(grupoId){
     window.location.href =
         `/gradly/public/views/coordenador/projeto.php?grupo_id=${grupoId}`;
 }

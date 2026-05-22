@@ -100,8 +100,17 @@ function renderProjeto(container, projeto) {
     grid.appendChild(cell);
   });
 
+  const docLink = document.createElement("a");
+  docLink.href = "documentos.php";
+  docLink.className = "btn-primary";
+  docLink.style.display = "flex";
+  docLink.style.justifyContent = "center";
+  docLink.style.margin = "8px";
+  docLink.textContent = "Enviar Documento";
+
   card.appendChild(meta);
   card.appendChild(grid);
+  card.appendChild(docLink);
   card.appendChild(renderDocumentos(projeto.documentos));
   container.appendChild(card);
 }

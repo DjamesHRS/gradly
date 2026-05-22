@@ -81,13 +81,7 @@ if ($_SESSION['usuario_tipo'] != 'aluno') {
 
 <aside class="sidebar">
   <div class="sec-label"><div class="sec-label-inner"><svg class="si" viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>Início</div></div>
-  <ul class="snav"><li><a href="dashboard_aluno.php">Dashboard</a></li></ul>
-  <div class="sec-label" style="margin-top:.5rem;"><div class="sec-label-inner"><svg class="si" viewBox="0 0 24 24"><ellipse cx="12" cy="5" rx="9" ry="3"/></svg>Projeto</div></div>
-  <ul class="snav">
-    <li><a href="cadastro_projeto.php">Criar projeto</a></li>
-    <li><a href="documentos.php" class="active">Documento</a></li>
-    <li><a href="cadastro_grupo.php">Grupo</a></li>
-  </ul>
+  <ul class="snav"><li><a href="dashboard_aluno.php" class="active">Dashboard</a></li></ul>
 </aside>
 
 <main class="main">
