@@ -27,7 +27,6 @@ async function buscarProjetos(orientadorId){
         );
 
         const resposta = await retorno.json();
-        console.log(resposta)
 
         if(resposta.success){
 

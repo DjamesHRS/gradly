@@ -41,8 +41,6 @@ document
         notificarSucesso(resposta.message);
       } else {
         notificarErro(resposta.message);
-
-        console.log(resposta.error);
       }
     } catch (error) {
       console.error(error);

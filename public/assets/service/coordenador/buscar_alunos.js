@@ -48,7 +48,6 @@ async function buscarAlunos(){
         });
     }else{
         notificarErro(resposta.message);
-        console.log(resposta.error)
     }
 }
 

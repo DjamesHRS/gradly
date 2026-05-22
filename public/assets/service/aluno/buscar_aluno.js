@@ -51,7 +51,6 @@ async function buscarAluno() {
         document.getElementById("perfil-table").innerHTML = linhas;
     } else {
         notificarErro(resposta.message);
-        console.log(resposta.error);
     }
 }
 

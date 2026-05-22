@@ -1,3 +1,5 @@
+import {notificarErro, notificarInfo, notificarSucesso} from "../notificacao/notificacao.js"
+
 document.addEventListener("DOMContentLoaded", (event) => {
   const params = new URLSearchParams(window.location.search);
 
@@ -66,8 +68,7 @@ async function buscarGrupos(orientadorId) {
     });
     document.getElementById("grupos-table-body").innerHTML = linhas;
   } else {
-    alert("Erro! " + resposta.message);
-    console.log(resposta.error);
+    notificarErro(resposta.message);
   }
 }
 

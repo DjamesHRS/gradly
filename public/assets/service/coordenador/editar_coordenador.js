@@ -22,6 +22,5 @@ document.getElementById("enviar_edicao").addEventListener("click", async (e) => 
         notificarSucesso(resposta.message);
     } else {
         notificarErro(resposta.message);
-        console.log(resposta.error);
     }
 });

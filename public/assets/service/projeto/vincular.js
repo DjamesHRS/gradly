@@ -1,4 +1,4 @@
-import { notificarInfo } from '../notificacao/notificacao.js';
+import {notificarErro, notificarInfo, notificarSucesso} from "../notificacao/notificacao.js"
 
 document.getElementById("vincular").addEventListener("click", function() {
   vincularProjeto();
@@ -26,9 +26,8 @@ async function vincularProjeto() {
   const resposta = await retorno.json();
 
   if (resposta.success) {
-    alert("Projeto vinculado com sucesso!");
-    location.reload();
+    notificarSucesso(resposta.message);
   } else {
-    alert("Erro ao vincular projeto: " + resposta.message);
+    notificarErro(resposta.message)
   }
 }

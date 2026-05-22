@@ -23,6 +23,5 @@ document.getElementById("enviar_edicao").addEventListener("click", async (e) => 
         setTimeout(() => window.location.reload(), 1500);
     } else {
         notificarErro(resposta.message);
-        console.log(resposta.error);
     }
 });
