@@ -34,7 +34,7 @@ async function buscarProjeto(grupoId) {
 
     const resposta = await retorno.json();
 
-    if (!resposta.success || !resposta.projeto) {
+    if (!resposta.success || !resposta.data) {
 
       if (container) {
         renderEmptyState(container, resposta.message);
@@ -43,9 +43,9 @@ async function buscarProjeto(grupoId) {
       return;
     }
 
-    const projetos = Array.isArray(resposta.projeto)
-      ? resposta.projeto
-      : [resposta.projeto];
+    const projetos = Array.isArray(resposta.data)
+      ? resposta.data
+      : [resposta.data];
 
     if (container && projetos.length === 0) {
 

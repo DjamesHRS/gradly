@@ -141,6 +141,10 @@ if ($_SESSION['usuario_tipo'] != 'coordenador') {
                 </tbody>
             </table>
             </div>
+
+            <div>
+              <a href="gerenciar_orientadores.php" style="text-decoration: none"><button class="btn-outline" style="width: 100%; display: flex; justify-content: center; margin: 10px;">Voltar</button></a>
+            </div>
         </div>
 
     </div>

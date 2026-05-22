@@ -4,19 +4,20 @@ document.addEventListener('DOMContentLoaded', (event) => {
     buscarOrientadores();
 });
 
-async function buscarOrientadores(){
+async function buscarOrientadores() {
     const fd = new FormData();
     fd.append('acao', 'buscarOrientadores');
 
-    const retorno = await fetch("/gradly/app/controllers/coordenador_controller.php",{
+    const retorno = await fetch("/gradly/app/controllers/coordenador_controller.php", {
         method: "POST",
         body: fd
     });
 
     const resposta = await retorno.json();
 
-    if(resposta.success){
+    if (resposta.success) {
         let linhas = "";
+
         resposta.orientadores.forEach(orientador => {
             linhas += `
                 <tr>
@@ -24,8 +25,8 @@ async function buscarOrientadores(){
                     <td>${orientador.email}</td>
                     <td>
                         <button 
-                            class="btn btn-primary btn-sm"
-                            onclick="abrirProjetos(${orientador.id})"
+                            class="btn btn-primary btn-sm btn-ver-projetos"
+                            data-orientador="${orientador.id}"
                         >
                             Ver Projetos
                         </button>
@@ -33,13 +34,24 @@ async function buscarOrientadores(){
                 </tr>
             `;
         });
+
         document.getElementById("orientadores-table-body").innerHTML = linhas;
-    }else{
+
+        document.querySelectorAll(".btn-ver-projetos").forEach((botao) => {
+            botao.addEventListener("click", () => {
+                const orientadorId = botao.dataset.orientador;
+
+                window.location.href =
+                    `/gradly/public/views/coordenador/projetos_orientador.php?orientador_id=${orientadorId}`;
+            });
+        });
+
+    } else {
         notificarErro(resposta.message);
     }
 }
 
-function abrirProjetos(orientadorId){
+window.abrirProjetos = function(orientadorId) {
     window.location.href =
         `/gradly/public/views/coordenador/projetos_orientador.php?orientador_id=${orientadorId}`;
 }

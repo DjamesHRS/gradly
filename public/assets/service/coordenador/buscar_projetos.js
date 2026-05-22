@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', () => {
     buscarProjetos(orientadorId);
 });
 
-async function buscarProjetos(orientadorId){
+async function buscarProjetos(orientadorId) {
 
     const fd = new FormData();
 
@@ -28,14 +28,14 @@ async function buscarProjetos(orientadorId){
 
         const resposta = await retorno.json();
 
-        if(resposta.success){
+        if (resposta.success) {
 
             let linhas = "";
 
-            if(
+            if (
                 !resposta.projetos ||
                 resposta.projetos.length === 0
-            ){
+            ) {
 
                 linhas = `
                     <tr>
@@ -67,8 +67,8 @@ async function buscarProjetos(orientadorId){
                             <td>
 
                                 <button 
-                                    class="btn btn-primary btn-sm"
-                                    onclick="abrirProjeto(${projeto.grupo_id})"
+                                    class="btn btn-primary btn-sm btn-ver-projeto"
+                                    data-grupo="${projeto.grupo_id}"
                                 >
                                     Ver Projeto
                                 </button>
@@ -84,12 +84,22 @@ async function buscarProjetos(orientadorId){
                 "projetos-table-body"
             ).innerHTML = linhas;
 
+            document.querySelectorAll(".btn-ver-projeto").forEach((botao) => {
+                botao.addEventListener("click", () => {
+
+                    const grupoId = botao.dataset.grupo;
+
+                    window.location.href =
+                        `/gradly/public/views/coordenador/projeto.php?grupo_id=${grupoId}`;
+                });
+            });
+
         } else {
 
             notificarErro(resposta.message);
         }
 
-    } catch(error){
+    } catch (error) {
 
         console.error(error);
 
@@ -97,7 +107,7 @@ async function buscarProjetos(orientadorId){
     }
 }
 
-function abrirProjeto(grupoId){
+window.abrirProjeto = function(grupoId) {
 
     window.location.href =
         `/gradly/public/views/coordenador/projeto.php?grupo_id=${grupoId}`;
