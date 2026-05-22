@@ -146,7 +146,7 @@ if ($_SESSION['usuario_tipo'] != 'orientador') {
 </main>
 
 <script src="../../assets/service/controle/logout.js"></script>
-<script src="../../assets/service/orientador/buscar_grupos.js"></script>
+<script type="module" src="../../assets/service/orientador/buscar_grupos.js"></script>
 
 </body>
 </html>

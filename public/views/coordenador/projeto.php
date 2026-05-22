@@ -296,7 +296,7 @@ if ($_SESSION['usuario_tipo'] != 'coordenador') {
 </main>
 
 <script src="../../assets/service/controle/logout.js"></script>
-<script src="../../assets/service/projeto/buscar_projeto_coordenador.js"></script>
+<script type="module" src="../../assets/service/projeto/buscar_projeto_coordenador.js"></script>
 
 </body>
 </html>
