@@ -21,8 +21,8 @@ class GrupoControle {
 
         $query = "SELECT aluno.id 
               FROM aluno
-              JOIN user ON aluno.id = user.id
-              WHERE user.email = :email";
+              JOIN usuario ON aluno.id = usuario.id
+              WHERE usuario.email = :email";
 
         $resultado = Conexao::executarComParametros($query, $parametros)->fetch();
         
@@ -114,13 +114,13 @@ class GrupoControle {
 
             FROM grupo g
 
-            INNER JOIN projeto_tcc p
+            INNER JOIN projeto p
                 ON p.grupo_id = g.id
 
             LEFT JOIN aluno a
                 ON a.grupo_id = g.id
 
-            LEFT JOIN user u
+            LEFT JOIN usuario u
                 ON u.id = a.id
 
             WHERE p.orientador_id = :orientador_id

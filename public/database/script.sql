@@ -3,66 +3,66 @@
     USE gradly;
 
     -- =========== TABELA BASE (HERANÇA) ==============
-    CREATE TABLE user(
+    CREATE TABLE usuario(
         id INT AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(255),
-        email VARCHAR(255) UNIQUE,
-        senha VARCHAR(255),
-        dataCadastro DATETIME
+        nome VARCHAR(255) NOT NULL,
+        email VARCHAR(255) NOT NULL UNIQUE,
+        senha VARCHAR(255) NOT NULL,
+        dataCadastro DATETIME NOT NULL
     );
 
     -- ============= INSTITUIÇÃO ============
-    CREATE TABLE Instituicao_ensino(
+    CREATE TABLE instituicao(
         id INT AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(255),
-        cnpj VARCHAR(20),
-        endereco VARCHAR(255),
-        telefone VARCHAR(20)
+        nome VARCHAR(255) NOT NULL,
+        cnpj VARCHAR(20) NOT NULL,
+        endereco VARCHAR(255) NOT NULL,
+        telefone VARCHAR(20) NOT NULL
     );
 
     -- =========== GRUPO ==============
     CREATE TABLE grupo(
         id INT AUTO_INCREMENT PRIMARY KEY,
-        nome VARCHAR(255),
+        nome VARCHAR(255) NOT NULL,
         descricao TEXT,
-        dataCriacao DATETIME
+        dataCriacao DATETIME NOT NULL
     );
 
     -- =========== ORIENTADOR ==============
     CREATE TABLE orientador(
         id INT PRIMARY KEY,
-        areaAtuacao VARCHAR(255),
-        titulacao VARCHAR(100),
-        FOREIGN KEY (id) REFERENCES `user`(id)
+        areaAtuacao VARCHAR(255) NOT NULL,
+        titulacao VARCHAR(100) NOT NULL,
+        FOREIGN KEY (id) REFERENCES usuario(id)
     );
 
     -- =========== ADMINISTRADOR ==============
     CREATE TABLE administrador(
         id INT PRIMARY KEY,
-        nivelAcesso INT,
-        FOREIGN KEY (id) REFERENCES `user`(id)
+        nivelAcesso INT NOT NULL,
+        FOREIGN KEY (id) REFERENCES usuario(id)
     );
 
     -- ============ COORDENADOR =============
     CREATE TABLE coordenador(
         id INT PRIMARY KEY,
-        departamento VARCHAR(255),
-        instituicao_id INT,
-        FOREIGN KEY (id) REFERENCES `user`(id),
-        FOREIGN KEY (instituicao_id) REFERENCES Instituicao_ensino(id)
+        departamento VARCHAR(255) NOT NULL,
+        instituicao_id INT NOT NULL,
+        FOREIGN KEY (id) REFERENCES usuario(id),
+        FOREIGN KEY (instituicao_id) REFERENCES instituicao(id)
     );
 
     -- =========== PROJETO TCC ==============
-    CREATE TABLE projeto_tcc(
+    CREATE TABLE projeto(
         id INT AUTO_INCREMENT PRIMARY KEY,
-        titulo VARCHAR(255),
+        titulo VARCHAR(255) NOT NULL,
         descricao TEXT,
-        objetivo TEXT,
-        temas VARCHAR(255),
-        areas VARCHAR(255),
+        objetivo TEXT NOT NULL,
+        temas VARCHAR(255) NOT NULL,
+        areas VARCHAR(255) NOT NULL,
         estado VARCHAR(50),
         orientador_id INT,
-        grupo_id INT,
+        grupo_id INT NOT NULL,
         FOREIGN KEY (grupo_id) REFERENCES grupo(id),
         FOREIGN KEY (orientador_id) REFERENCES orientador(id)
     );
@@ -70,58 +70,58 @@
     -- ========== ALUNO ===============
     CREATE TABLE aluno(
         id INT PRIMARY KEY,
-        matricula VARCHAR(50),
-        curso VARCHAR(100),
+        matricula VARCHAR(50) NOT NULL,
+        curso VARCHAR(100) NOT NULL,
         grupo_id INT,
-        FOREIGN KEY (id) REFERENCES `user`(id),
+        FOREIGN KEY (id) REFERENCES usuario(id),
         FOREIGN KEY (grupo_id) REFERENCES grupo(id)
     );
 
     -- ============ DOCUMENTO =============
     CREATE TABLE documento(
         id INT AUTO_INCREMENT PRIMARY KEY,
-        titulo VARCHAR(255),
+        titulo VARCHAR(255) NOT NULL,
         conteudo TEXT,
-        dataCriacao DATETIME,
+        dataCriacao DATETIME NOT NULL,
         path VARCHAR(500),
-        versao INT,
-        projeto_id INT,
-        FOREIGN KEY (projeto_id) REFERENCES projeto_tcc(id)
+        versao INT NOT NULL,
+        projeto_id INT NOT NULL,
+        FOREIGN KEY (projeto_id) REFERENCES projeto(id)
     );
 
     -- ============ TAREFA =============
     CREATE TABLE tarefa(
         id INT AUTO_INCREMENT PRIMARY KEY,
-        descricao TEXT,
-        estado VARCHAR(50),
-        dataInicio DATE,
-        dataFim DATE,
-        responsavel_id INT,
-        projeto_id INT,
+        descricao TEXT NOT NULL,
+        estado VARCHAR(50) NOT NULL,
+        dataInicio DATE NOT NULL,
+        dataFim DATE NOT NULL,
+        responsavel_id INT NOT NULL,
+        projeto_id INT NOT NULL,
         FOREIGN KEY (responsavel_id) REFERENCES aluno(id),
-        FOREIGN KEY (projeto_id) REFERENCES projeto_tcc(id)
+        FOREIGN KEY (projeto_id) REFERENCES projeto(id)
     );
 
     -- ============ COMENTÁRIO =============
     CREATE TABLE comentario(
         id INT AUTO_INCREMENT PRIMARY KEY,
-        texto TEXT,
-        data_criacao DATETIME,
-        autor_id INT,
-        documento_id INT,
-        FOREIGN KEY (autor_id) REFERENCES `user`(id),
+        texto TEXT NOT NULL,
+        data_criacao DATETIME NOT NULL,
+        autor_id INT NOT NULL,
+        documento_id INT NOT NULL,
+        FOREIGN KEY (autor_id) REFERENCES usuario(id),
         FOREIGN KEY (documento_id) REFERENCES documento(id)
     );
 
     -- =========== REFERÊNCIAS ==============
     CREATE TABLE referencias(
         id INT AUTO_INCREMENT PRIMARY KEY,
-        titulo VARCHAR(255),
-        autor VARCHAR(255),
-        ano INT,
-        tipo VARCHAR(50),
-        projeto_id INT,
-        FOREIGN KEY (projeto_id) REFERENCES projeto_tcc(id)
+        titulo VARCHAR(255) NOT NULL,
+        autor VARCHAR(255) NOT NULL,
+        ano INT NOT NULL,
+        tipo VARCHAR(50) NOT NULL,
+        projeto_id INT NOT NULL,
+        FOREIGN KEY (projeto_id) REFERENCES projeto(id)
     );
 
 
@@ -132,7 +132,7 @@
     USE gradly;
 
     -- ================= INSTITUICOES =================
-    INSERT INTO Instituicao_ensino (id, nome, cnpj, endereco, telefone) VALUES
+    INSERT INTO instituicao (id, nome, cnpj, endereco, telefone) VALUES
     (1, 'PUCPR',    '12345678000101', 'Curitiba - PR',   '41999990001'),
     (2, 'UTFPR',    '12345678000102', 'Curitiba - PR',   '41999990002'),
     (3, 'UFPR',     '12345678000103', 'Curitiba - PR',   '41999990003'),
@@ -145,7 +145,7 @@
     -- IDs 6-10  → Administradores
     -- IDs 11-15 → Coordenadores
     -- IDs 16-20 → Alunos
-    INSERT INTO user (id, nome, email, senha, dataCadastro) VALUES
+    INSERT INTO usuario (id, nome, email, senha, dataCadastro) VALUES
     -- Orientadores
     (1,  'Carlos Silva',    'carlos@gradly.com',    '$2y$10$N9qo8uLOickgziQueC7B5OPST9QJqq8E4fnxQSDtqKPVXzXvgHAm', NOW()),
     (2,  'Maria Souza',     'maria@gradly.com',     '$2y$10$N9qo8uLOickgziQueC7B5OPST9QJqq8E4fnxQSDtqKPVXzXvgHAm', NOW()),
@@ -208,7 +208,7 @@
 
 
     -- ================= PROJETOS =================
-    INSERT INTO projeto_tcc (id, titulo, descricao, objetivo, temas, areas, estado, orientador_id, grupo_id) VALUES
+    INSERT INTO projeto (id, titulo, descricao, objetivo, temas, areas, estado, orientador_id, grupo_id) VALUES
     (1, 'Sistema de IA',  'Projeto de IA',        'Criar IA',              'IA',        'Tecnologia', 'Em andamento', 1, 1),
     (2, 'Sistema Web',    'Projeto Web',           'Criar sistema web',     'Web',       'Tecnologia', 'Em andamento', 2, 2),
     (3, 'App Mobile',     'Projeto Mobile',        'Criar app',             'Mobile',    'Tecnologia', 'Planejado',    3, 3),
@@ -260,3 +260,6 @@
     (3, 'Livro Mobile',    'Autor C', 2022, 'Livro', 3),
     (4, 'Livro BD',        'Autor D', 2023, 'Livro', 4),
     (5, 'Livro Segurança', 'Autor E', 2024, 'Livro', 5);
+    
+    
+    

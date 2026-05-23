@@ -20,7 +20,7 @@ include_once("../config/conexao.php");
                     ':dataCadastro' => $this->dataCadastro,
                 );
 
-                $query = "INSERT INTO user 
+                $query = "INSERT INTO usuario 
                         (nome, email, senha, dataCadastro)
                         VALUES
                         (:nome, :email, :senha, :dataCadastro)";
@@ -42,7 +42,7 @@ include_once("../config/conexao.php");
                     ':email' => $this->email,
                 );
 
-                $query = "UPDATE user SET 
+                $query = "UPDATE usuario SET 
                         nome = :nome, 
                         email = :email 
                         WHERE id = :id";

@@ -51,7 +51,7 @@ class Projeto {
                     c.autor_id,
                     u.nome AS autor_nome
                  FROM comentario c
-                 LEFT JOIN user u ON u.id = c.autor_id
+                 LEFT JOIN usuario u ON u.id = c.autor_id
                  WHERE c.documento_id IN (" . implode(',', $placeholders) . ")
                  ORDER BY c.data_criacao DESC, c.id DESC",
                 $params
@@ -98,7 +98,7 @@ class Projeto {
                 ':grupo_id' => $this->grupo_id
             );
 
-            $query = "INSERT INTO projeto_tcc
+            $query = "INSERT INTO projeto
                     (titulo, descricao, objetivo, temas, areas, grupo_id)
                     VALUES
                     (:titulo, :descricao, :objetivo, :temas, :areas, :grupo_id)";
@@ -128,9 +128,9 @@ class Projeto {
                              p.areas,
                              p.estado,
                              u.nome AS orientador_nome
-                      FROM projeto_tcc p
+                      FROM projeto p
                       LEFT JOIN orientador o ON o.id = p.orientador_id
-                      LEFT JOIN user u ON u.id = o.id
+                      LEFT JOIN usuario u ON u.id = o.id
                       WHERE p.grupo_id = :grupo_id
                       LIMIT 1";
 
@@ -152,7 +152,7 @@ class Projeto {
     }
 
     public static function contar() {
-        $query = "SELECT COUNT(*) AS total FROM projeto_tcc";
+        $query = "SELECT COUNT(*) AS total FROM projeto";
 
         $stmt = Conexao::executar($query);
 
@@ -162,7 +162,7 @@ class Projeto {
     }
 
     public static function buscarSemOrientador() {
-        $query = "SELECT id, titulo FROM projeto_tcc WHERE orientador_id IS NULL";
+        $query = "SELECT id, titulo FROM projeto WHERE orientador_id IS NULL";
 
         $stmt = Conexao::executar($query);
 
@@ -186,9 +186,9 @@ class Projeto {
                              p.estado,
                              p.grupo_id,
                              u.nome AS orientador_nome
-                      FROM projeto_tcc p
+                      FROM projeto p
                       LEFT JOIN orientador o ON o.id = p.orientador_id
-                      LEFT JOIN user u ON u.id = o.id
+                      LEFT JOIN usuario u ON u.id = o.id
                       WHERE p.orientador_id = :orientador_id
                       ORDER BY p.id DESC";
 
@@ -213,7 +213,7 @@ class Projeto {
                 ':orientador_id' => $this->orientador_id
             ];
 
-            $query = "UPDATE projeto_tcc
+            $query = "UPDATE projeto
                       SET orientador_id = :orientador_id
                       WHERE id = :projeto_id";
 

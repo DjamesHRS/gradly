@@ -36,8 +36,8 @@ class Coordenador {
         try {
             $query = "SELECT u.nome, u.email, c.id, c.departamento, i.nome AS instituicao, i.id AS instituicao_id
                     FROM coordenador c
-                    JOIN Instituicao_ensino i ON c.instituicao_id = i.id
-                    JOIN user u ON c.id = u.id
+                    JOIN instituicao i ON c.instituicao_id = i.id
+                    JOIN usuario u ON c.id = u.id
                     WHERE c.id = :id";
 
             $parametros = Array(':id' => $usuario_id);

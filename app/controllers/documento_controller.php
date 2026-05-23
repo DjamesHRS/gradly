@@ -16,7 +16,7 @@ class DocumentoControle {
     private function obterProjetoDoAluno() {
         $stmt = Conexao::executarComParametros(
             "SELECT p.id
-             FROM projeto_tcc p
+             FROM projeto p
              INNER JOIN aluno a ON a.grupo_id = p.grupo_id
              WHERE a.id = :aluno_id
              LIMIT 1",

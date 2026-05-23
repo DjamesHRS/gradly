@@ -45,15 +45,15 @@ class Aluno {
     public static function buscarAlunosCoordenador() {
         $query = "
             SELECT 
-                user.nome,
-                user.email,
-                projeto_tcc.titulo AS titulo_projeto,
-                projeto_tcc.grupo_id
+                usuario.nome,
+                usuario.email,
+                projeto.titulo AS titulo_projeto,
+                projeto.grupo_id
             FROM aluno
-            JOIN user 
-                ON user.id = aluno.id
-            LEFT JOIN projeto_tcc 
-                ON projeto_tcc.grupo_id = aluno.grupo_id";
+            JOIN usuario 
+                ON usuario.id = aluno.id
+            LEFT JOIN projeto 
+                ON projeto.grupo_id = aluno.grupo_id";
 
         $stmt = Conexao::executar($query);
 
@@ -64,7 +64,7 @@ class Aluno {
         try {
             $query = "SELECT u.nome, u.email, a.id, a.matricula, a.curso, g.nome AS grupo
                     FROM aluno a
-                    JOIN user u ON a.id = u.id
+                    JOIN usuario u ON a.id = u.id
                     LEFT JOIN grupo g ON g.id = a.grupo_id
                     WHERE a.id = :id";
 

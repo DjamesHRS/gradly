@@ -54,10 +54,10 @@ class OrientadorControle {
                 user.email,
                 orientador.areaAtuacao,
                 orientador.titulacao
-            FROM user
+            FROM usuario
             INNER JOIN orientador
-                ON user.id = orientador.id
-            WHERE user.id = :id
+                ON usuario.id = orientador.id
+            WHERE usuario.id = :id
         ";
 
         $stmt = $conn->prepare($sql);

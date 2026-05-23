@@ -39,7 +39,7 @@ class AlunoControle {
             $conn->commit();
             echo json_encode([
                 'success' => true,
-                'message' => 'aluno cadastrado com sucesso',
+                'message' => 'Aluno cadastrado com sucesso',
             ]);
 
         } catch (Exception $e) {

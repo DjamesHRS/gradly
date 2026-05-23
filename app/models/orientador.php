@@ -66,10 +66,10 @@ class Orientador {
         $query = "
             SELECT 
                 orientador.id,
-                user.nome
+                usuario.nome
             FROM orientador
-            INNER JOIN user 
-                ON orientador.id = user.id
+            INNER JOIN usuario 
+                ON orientador.id = usuario.id
         ";
 
         $stmt = Conexao::executar($query);
@@ -82,15 +82,15 @@ class Orientador {
     public static function buscarOrientadoresCoordenador() {
         $query = "
             SELECT 
-                user.id,
-                user.nome,
-                user.email,
-                projeto_tcc.grupo_id
+                usuario.id,
+                usuario.nome,
+                usuario.email,
+                projeto.grupo_id
             FROM orientador
-            JOIN user 
-                ON user.id = orientador.id
-            JOIN projeto_tcc 
-                ON projeto_tcc.orientador_id = orientador.id";
+            JOIN usuario 
+                ON usuario.id = orientador.id
+            JOIN projeto 
+                ON projeto.orientador_id = orientador.id";
 
         $stmt = Conexao::executar($query);
 

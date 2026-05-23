@@ -15,7 +15,7 @@ class LoginControle {
             $senha = $_POST['senha'];
 
             // Buscar usuário
-            $query = "SELECT id, nome, senha FROM user WHERE email = :email";
+            $query = "SELECT id, nome, senha FROM usuario WHERE email = :email";
             $stmt = Conexao::executarComParametros($query, [':email' => $email]);
             
             $usuario = $stmt->fetch(PDO::FETCH_ASSOC);
