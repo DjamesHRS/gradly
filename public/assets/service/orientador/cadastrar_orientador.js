@@ -1,4 +1,5 @@
 import { notificarSucesso, notificarErro } from '../notificacao/notificacao.js';
+import { validarNome, validarEmail, validarSenha, validarCampo } from '../regex/regex.js';
 
 document.getElementById("cadastrarOrientador").addEventListener("click", (e) =>{
     e.preventDefault();
@@ -13,8 +14,43 @@ async function cadastrar(){
     var atuacao = document.getElementById('atuacao').value;
     var titulacao = document.getElementById('titulacao').value;
 
-        if (!nome || !email || !senha || !atuacao || !titulacao) {
-            console.error("Algum input não foi encontrado no DOM");
+    if(!validarCampo(nome)){
+            notificarErro("Preencha o nome");
+            return;
+        }
+        if(validarNome(nome) === false){
+            notificarErro("Preencha com nome e sobrenome (apenas letras)");
+            return;
+        }
+    
+        if(!validarCampo(email)){
+            notificarErro("Preencha o email");
+            return;
+        }
+    
+        if(validarEmail(email) === false){
+            notificarErro("Preencha um email válido (exemplo@gradly.com)");
+            return;
+         }
+    
+        if(!validarCampo(senha)){
+            notificarErro("Preencha a senha");
+            return;
+        }
+    
+    
+        if(validarSenha(senha) === false){
+            notificarErro("A senha deve conter: <br> • Letra maiúscula, <br> • Letra minúscula, <br> • Número  <br> • 8 caracteres");
+            return;
+        }
+    
+        if (!validarCampo(atuacao)) {
+            notificarErro("Preencha a atuação");
+            return;
+        }
+    
+        if(!validarCampo(titulacao)){
+            notificarErro("Selecione uma titulação");
             return;
         }
 

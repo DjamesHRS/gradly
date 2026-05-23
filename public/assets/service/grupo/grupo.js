@@ -1,4 +1,5 @@
 import { notificarSucesso, notificarErro } from '../notificacao/notificacao.js';
+import { validarCampo, validarEmail } from '../regex/regex.js';
 
 const btnCadastrar = document.getElementById("cadastrar");
 const btnAdicionar = document.getElementById("adicionar");
@@ -23,6 +24,10 @@ const participantes = [];
 async function adicionar(){
 
     var email = document.getElementById('email').value;
+    if(email.trim() === ""){
+        notificarErro("Preencha o email");
+        return;
+    }
 
     const fd = new FormData();
     fd.append('email', email);
@@ -72,6 +77,16 @@ async function cadastrar(){
     var nome = document.getElementById('nome').value;
     var descricao = document.getElementById('descricao').value;
     var participantes = JSON.stringify(participantesID);
+
+    if(!validarCampo(nome)){
+        notificarErro("Preencha o nome");
+        return;
+    }
+
+    if(!validarCampo(descricao)){
+        notificarErro("Preencha a descrição");
+        return;
+    }
 
     const fd = new FormData();
     fd.append('nome', nome);
