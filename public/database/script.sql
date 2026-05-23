@@ -131,6 +131,9 @@
 
     USE gradly;
 
+    -- CÓDIGO PARA ADCICIONAR CAMPO NA TABELA DO BANCO:
+    -- ALTER TABLE aluno ADD COLUMN telefone VARCHAR(20);
+
     -- ================= INSTITUICOES =================
     INSERT INTO instituicao (id, nome, cnpj, endereco, telefone) VALUES
     (1, 'PUCPR',    '12345678000101', 'Curitiba - PR',   '41999990001'),
