@@ -50,8 +50,8 @@ class OrientadorControle {
 
         $sql = "
             SELECT
-                user.nome,
-                user.email,
+                usuario.nome,
+                usuario.email,
                 orientador.areaAtuacao,
                 orientador.titulacao
             FROM usuario
