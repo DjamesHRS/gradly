@@ -38,7 +38,7 @@
                         $host    = "localhost";
                         $dbname  = "gradly";
                         $usuario = "root";
-                        $senha   = "12345678";
+                        $senha   = "PUC@1234";
                         $port    = "3306";
                     }
 
