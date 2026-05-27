@@ -147,22 +147,22 @@ const notificacaoStyles = `
   }
 `;
 
-if (!document.getElementById('notificacao-styles')) {
-  const style = document.createElement('style');
-  style.id = 'notificacao-styles';
+if (!document.getElementById("notificacao-styles")) {
+  const style = document.createElement("style");
+  style.id = "notificacao-styles";
   style.textContent = notificacaoStyles;
   document.head.appendChild(style);
 }
 
 export function notificarSucesso(mensagem, caminho) {
-  const overlay = document.createElement('div');
-  overlay.className = 'notificacao-overlay';
+  const overlay = document.createElement("div");
+  overlay.className = "notificacao-overlay";
 
   function fecharModal() {
     overlay.remove();
-    if(caminho){
+    if (caminho) {
       window.location.href = caminho;
-    }else{
+    } else {
       window.location.reload();
     }
   }
@@ -185,10 +185,10 @@ export function notificarSucesso(mensagem, caminho) {
   document.body.appendChild(overlay);
 
   overlay
-    .querySelector('.notificacao-botao')
-    .addEventListener('click', fecharModal);
+    .querySelector(".notificacao-botao")
+    .addEventListener("click", fecharModal);
 
-  overlay.addEventListener('click', (e) => {
+  overlay.addEventListener("click", (e) => {
     if (e.target === overlay) {
       fecharModal();
     }
@@ -202,8 +202,8 @@ export function notificarSucesso(mensagem, caminho) {
 }
 
 export function notificarErro(mensagem) {
-  const overlay = document.createElement('div');
-  overlay.className = 'notificacao-overlay';
+  const overlay = document.createElement("div");
+  overlay.className = "notificacao-overlay";
   overlay.innerHTML = `
     <div class="notificacao-modal">
       <div class="notificacao-icon erro">
@@ -221,17 +221,16 @@ export function notificarErro(mensagem) {
   `;
   document.body.appendChild(overlay);
 
-  overlay.addEventListener('click', (e) => {
+  overlay.addEventListener("click", (e) => {
     if (e.target === overlay) {
       overlay.remove();
     }
   });
-
 }
 
 export function notificarInfo(mensagem) {
-  const overlay = document.createElement('div');
-  overlay.className = 'notificacao-overlay';
+  const overlay = document.createElement("div");
+  overlay.className = "notificacao-overlay";
   overlay.innerHTML = `
     <div class="notificacao-modal">
       <div class="notificacao-icon" style="background: #e0f2fe;">
@@ -250,10 +249,67 @@ export function notificarInfo(mensagem) {
   `;
   document.body.appendChild(overlay);
 
-  overlay.addEventListener('click', (e) => {
+  overlay.addEventListener("click", (e) => {
     if (e.target === overlay) {
       overlay.remove();
     }
   });
+}
 
+export function confirmarAcao(mensagem) {
+  return new Promise((resolve) => {
+    const overlay = document.createElement("div");
+    overlay.className = "notificacao-overlay";
+
+    overlay.innerHTML = `
+      <div class="notificacao-modal">
+        <div class="notificacao-icon" style="background: #fef3c7;">
+          <svg viewBox="0 0 24 24" style="stroke: #d97706;">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="13"></line>
+            <circle cx="12" cy="16" r="1"></circle>
+          </svg>
+        </div>
+
+        <h2 class="notificacao-titulo">
+          Confirmar ação
+        </h2>
+
+        <p class="notificacao-mensagem">
+          ${mensagem}
+        </p>
+
+        <div style="display:flex; gap:10px;">
+          <button class="notificacao-botao erro cancelar-btn">
+            Cancelar
+          </button>
+
+          <button class="notificacao-botao confirmar-btn">
+            Confirmar
+          </button>
+        </div>
+      </div>
+    `;
+
+    document.body.appendChild(overlay);
+
+    function fechar(resultado) {
+      overlay.remove();
+      resolve(resultado);
+    }
+
+    overlay
+      .querySelector(".confirmar-btn")
+      .addEventListener("click", () => fechar(true));
+
+    overlay
+      .querySelector(".cancelar-btn")
+      .addEventListener("click", () => fechar(false));
+
+    overlay.addEventListener("click", (e) => {
+      if (e.target === overlay) {
+        fechar(false);
+      }
+    });
+  });
 }

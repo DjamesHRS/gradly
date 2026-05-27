@@ -1,4 +1,8 @@
-import { notificarErro, notificarSucesso } from "../notificacao/notificacao.js";
+import {
+  notificarErro,
+  notificarSucesso,
+  confirmarAcao,
+} from "../notificacao/notificacao.js";
 
 document.addEventListener("DOMContentLoaded", () => {
   const params = new URLSearchParams(window.location.search);
@@ -251,7 +255,9 @@ function renderDocumentos(documentos) {
           deleteBtn.className = "btn-ghost-sm";
 
           deleteBtn.addEventListener("click", async () => {
-            const confirmar = confirm("Deseja excluir este comentario?");
+            const confirmar = await confirmarAcao(
+              "Deseja excluir este comentario?",
+            );
 
             if (!confirmar) {
               return;
